@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Windows Repair"
+  short_description: "Diagnose Windows Codex crashes and verify targeted repairs"
+  default_prompt: "Use $codex-windows-repair to diagnose and repair this Windows Codex issue, preserving user data and verifying the result."

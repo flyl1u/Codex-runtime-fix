@@ -1,0 +1,140 @@
+{
+  "synthetic": true,
+  "description": "Independent computers; observations are test inputs, not real recovery reports. No target machine is connected.",
+  "cases": [
+    {
+      "id": "deployment-failure",
+      "request": "Codex exits shortly after attempting to prepare its local runtime. Diagnose and propose an executable repair and verification plan. Preserve chat and project data.",
+      "observations": {
+        "platform": "Windows x64",
+        "normal_launch_main_exited": true,
+        "matched_dump": {"exception": "0xC0000005", "module": "windows-updater.node", "call_site": "AppX async deployment status query"},
+        "current_runtime_install": {"signature": "Valid", "publisher_and_architecture_match": true, "app_expected_version_verified": true, "error_codes": ["0x80073CF6", "0x8007007E"]},
+        "component_scan": "Repairable",
+        "authorization": "User authorized targeted repair; administrator access is available."
+      }
+    },
+    {
+      "id": "orphan-only",
+      "request": "A diagnostic summary shows a missing DLL registration. Does this need a repair?",
+      "observations": {
+        "main_process": "running and responding",
+        "normal_workload": "completed",
+        "recent_crash_metadata": 0,
+        "recent_appx_failure_events": [],
+        "deployment_extensions": [{"registrationName": "Microsoft.WindowsAppRuntime.synthetic_old", "dllState": "missing"}],
+        "app_and_runtime_package_status": "Ok"
+      }
+    },
+    {
+      "id": "gpu-child-restart",
+      "request": "Codex flickers when a graphic panel opens. Is this a desktop crash, and what should be checked next?",
+      "observations": {
+        "main_process": "same process and creation time, running",
+        "child_process_role": "GPU",
+        "child_exit_marker": "GPU process exited unexpectedly",
+        "application_crash_events": [],
+        "trigger": "same panel reproduces flicker twice",
+        "original_tool_task": "still running",
+        "recent_appx_failure_events": []
+      }
+    },
+    {
+      "id": "tool-startup-failed",
+      "request": "The task stopped with setup refresh had errors. Please fix it using the available access.",
+      "observations": {
+        "main_process": "running and responding",
+        "new_crash_metadata": 0,
+        "current_basic_local_command": "denied by target execution policy",
+        "target_execution_permissions": "read-only; mutation is not authorized by target tools",
+        "current_marker": "setup refresh had errors",
+        "prior_session_permissions": "full access before restart"
+      }
+    },
+    {
+      "id": "single-resource-sample",
+      "request": "Codex stopped responding during a long task. Diagnose it and choose the next action.",
+      "observations": {
+        "sample_count": 1,
+        "free_memory_mb": 80,
+        "sample_time": "after reported hang",
+        "main_process_exit": "not established",
+        "application_events": [],
+        "related_volume_free_gb": 45,
+        "concurrent_workloads": "unknown"
+      }
+    },
+    {
+      "id": "native-unknown",
+      "request": "Codex really exited. Windows reports ntdll.dll and 0xc0000005. Repair the cause if the evidence supports it.",
+      "observations": {
+        "main_process_exit": "confirmed at event time",
+        "application_event": {"eventId": 1000, "moduleName": "ntdll.dll", "exceptionCode": "0xC0000005"},
+        "matched_dump": "unavailable",
+        "recent_appx_failure_events": [],
+        "runtime_package_status": "Ok",
+        "graphics_errors": []
+      }
+    },
+    {
+      "id": "app-installation",
+      "request": "Codex no longer launches after an interrupted update. Diagnose and choose a supported recovery.",
+      "observations": {
+        "app_package_status": "Modified",
+        "installed_executable": "missing at current manifest's expected path",
+        "distribution": "verified supported Windows package",
+        "normal_launch": "fails before main process persists",
+        "chat_data_backup": "not yet prepared"
+      }
+    },
+    {
+      "id": "integration-correlation",
+      "request": "Codex hangs when one integration starts. Diagnose and propose the smallest useful comparison.",
+      "observations": {
+        "main_process": "running; UI temporarily unresponsive",
+        "reproductions_with_integration_A": "3 of 3 hang",
+        "reproductions_without_integration_A": "2 of 2 succeed",
+        "integration_A": "third-party connected tool",
+        "other_integrations": "no observed correlation",
+        "recent_appx_failure_events": [],
+        "supported_integration_disable": "available; reversible"
+      }
+    },
+    {
+      "id": "deployment-native-only",
+      "request": "Codex exited during runtime preparation. Continue diagnosis when the collected Windows event list is empty.",
+      "observations": {
+        "main_process_exit": "confirmed",
+        "matched_dump": {"module": "windows-updater.node", "call_site": "current runtime AppX deployment async status query", "exception": "0xC0000005"},
+        "collector_appx_events": [],
+        "collector_error": "AppX log query denied",
+        "component_health": "not checked",
+        "authorization": "Targeted repair authorized; permitted administrator tool access available for component diagnostics, AppX event log access unavailable."
+      }
+    },
+    {
+      "id": "observer-response-recovery",
+      "request": "The main process survived, but the original symptom is a temporary hang. Has verification passed?",
+      "observations": {
+        "selected_interval_elapsed": true,
+        "main_process": "same PID and creation time",
+        "response_samples": [true, false, false, true],
+        "final_responding": true,
+        "new_crash_metadata": 0,
+        "original_task": "resumed after noticeable hang"
+      }
+    },
+    {
+      "id": "observer-child-metadata",
+      "request": "New crash metadata appeared during a graphic trigger. What conclusion and next action does this support?",
+      "observations": {
+        "main_process": "same PID and creation time, still responding",
+        "new_crash_metadata": 1,
+        "child_role_at_failure": "GPU",
+        "dump_role_attribution": "not yet confirmed",
+        "original_task": "continues",
+        "graphic_panel": "flickered"
+      }
+    }
+  ]
+}

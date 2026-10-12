@@ -1,0 +1,45 @@
+name: 闪退案例 / Crash report
+description: 提供症状、版本和脱敏诊断摘要
+title: '[Crash] '
+body:
+  - type: markdown
+    attributes:
+      value: 请勿上传原始日志、崩溃转储、账号信息、聊天记录或安装包。
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤与发生时机
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Windows 与应用版本
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 错误码与已审阅的诊断摘要
+      render: json
+  - type: textarea
+    id: attempts
+    attributes:
+      label: 尝试的操作、前后结果及期间的更新
+  - type: textarea
+    id: agent_decision
+    attributes:
+      label: Codex 选择的路径与依据
+      description: 若使用了本项目，注明采用的路径、支持证据及仍然不确定的地方。
+  - type: textarea
+    id: verification
+    attributes:
+      label: 验收结果
+      description: 原任务是否重做、实际观察时间、相关错误是否消失；采样失败须单独说明。
+  - type: checkboxes
+    id: review
+    attributes:
+      label: 分享范围
+      options:
+        - label: 我已查看上述内容，移除了私人数据和原始转储。
+          required: true
